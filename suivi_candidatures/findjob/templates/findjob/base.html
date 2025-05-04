@@ -1,0 +1,23 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Suivi candidatures</title>
+        <link rel="stylesheet" href="{% static 'findjob/styles.css' %}" />
+    </head>
+    <body>
+
+        <header>
+            <p>Suivi candidatures</p>
+            <nav>
+                <a href="{% url 'application-list' %}">Candidatures</a
+                >
+            </nav>
+        </header>
+
+        {% block content %}{% endblock %}
+
+    </body>
+</html>
