@@ -7,7 +7,17 @@
 <ul>
     <li>{{application.title}}</li>
     
-    <li>{% if application.applied %}E{% else %}Pas e{% endif %}nvoyée</li>
+    {% if application.applied %}
+    <li>Envoyée le {{application.date_applied}}</li>
+    {% else %}
+    <li>Pas encore envoyée</li>
+    {% endif %}
+    {% if application.called_back %}
+    <li>Relancée le {{application.date_callback}}</li>
+    {% else %}
+    <li>Pas encore relancée</li>
+    {% endif %}
+    <li>Lettre de motivation : {{application.cover_letter}}</li>
     
     <li><a href="{{application.link}}">Lien</a></li>
 </ul>

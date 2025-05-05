@@ -24,4 +24,7 @@ urlpatterns = [
     path('applications/', views.application_list, name='application-list'),
     path('applications/<int:id>/', views.application_detail, name='application-detail'),
     path('applications/add/', views.application_add, name='application-add'),
+    path('companies/', views.company_list, name='company-list'),
+    path('companies/<int:id>/', views.company_detail, name='company-detail'),
+    path('companies/add/', views.company_add, name='company-add'),
 ]

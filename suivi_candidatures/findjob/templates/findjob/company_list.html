@@ -1,0 +1,14 @@
+{% extends 'findjob/base.html' %}
+
+{% block content %} 
+<a class="add_button" href="{% url 'company-add' %}">Ajouter une entreprise</a>
+
+<h1>Liste des entreprises :</h1>
+
+<ul>
+    {% for company in companies %}
+    <li><a href="{% url 'company-detail' company.id %}">{{company.name}}</a></li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

@@ -1,6 +1,9 @@
 from django.db import models
 
 class Company(models.Model):
+    def __str__(self):
+        return f'{self.name}'
+    
     name = models.fields.CharField(max_length=30)
 
 class Application(models.Model):
@@ -11,5 +14,5 @@ class Application(models.Model):
     called_back = models.fields.BooleanField(default=False)
     date_callback = models.fields.DateField(null=True, blank=True)
     cover_letter = models.fields.TextField(max_length=2000, default="", null=True)
-    # company = models.ForeignKey(Company, on_delete=models.SET_NULL)
+    company = models.ForeignKey(Company, on_delete=models.SET_NULL, null=True)
 
