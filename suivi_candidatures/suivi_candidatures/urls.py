@@ -22,4 +22,6 @@ from findjob import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('applications/', views.application_list, name='application-list'),
+    path('applications/<int:id>/', views.application_detail, name='application-detail'),
+    path('applications/add/', views.application_add, name='application-add'),
 ]

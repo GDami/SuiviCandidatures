@@ -1,0 +1,15 @@
+{% extends 'findjob/base.html' %}
+
+{% block content %} 
+
+<h1>Candidature<h1>
+
+<ul>
+    <li>{{application.title}}</li>
+    
+    <li>{% if application.applied %}E{% else %}Pas e{% endif %}nvoyée</li>
+    
+    <li><a href="{{application.link}}">Lien</a></li>
+</ul>
+
+{% endblock %}

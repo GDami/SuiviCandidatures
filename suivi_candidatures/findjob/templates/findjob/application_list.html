@@ -1,12 +1,20 @@
 {% extends 'findjob/base.html' %}
 
 {% block content %} 
+<a class="add_button" href="{% url 'application-add' %}">Ajouter une candidature</a>
 
 <h1>Liste des candidatures :</h1>
 
 <ul>
     {% for application in applications %}
-    <li>{{application.title}}</li>
+    <li><ul><a href="{% url 'application-detail' application.id %}">{{application.title}}</a>
+        {% if application.applied %}
+        <li>Envoyée le {{application.date_applied}}</li>
+        {% endif %}
+        {% if application.called_back %}
+        <li>Relancée le {{application.date_callback}}</li>
+        {% endif %}
+    </ul></li>
     {% endfor %}
 </ul>
 
