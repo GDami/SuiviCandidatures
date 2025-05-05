@@ -1,0 +1,32 @@
+* {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+header p {
+    font-weight: bold;
+    font-size: 30px;
+    margin: .5em auto .5em;
+}
+
+header a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 10px;
+}
+
+header a:hover {
+    background-color: #dddddd;
+}
+
+header a:visited {
+    color:inherit;
+}
+
+header {
+    text-align: center;
+    border-bottom: solid 1px black;
+}
+
+h1 {
+    font-size: larger;
+}
