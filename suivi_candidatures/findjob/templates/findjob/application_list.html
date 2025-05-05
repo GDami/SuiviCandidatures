@@ -7,7 +7,7 @@
 
 <ul>
     {% for application in applications %}
-    <li><ul><a href="{% url 'application-detail' application.id %}">{{application.title}}</a> chez <a href="{% url 'company-detail' application.company.id %}">{{application.company}}</a>
+    <li><a href="{% url 'application-detail' application.id %}">{{application.title}}</a> chez <a href="{% url 'company-detail' application.company.id %}">{{application.company}}</a><ul>
         {% if application.applied %}
         <li>Envoyée le {{application.date_applied}}</li>
         {% endif %}
