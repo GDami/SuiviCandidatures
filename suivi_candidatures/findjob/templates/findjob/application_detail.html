@@ -17,7 +17,7 @@
     {% else %}
     <li>Pas encore relancée</li>
     {% endif %}
-    <li>Lettre de motivation : {{application.cover_letter}}</li>
+    <li>Lettre de motivation : {{application.cover_letter | linebreaks}}</li>
     
     <li><a href="{{application.link}}">Lien</a></li>
 </ul>

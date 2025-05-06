@@ -8,12 +8,10 @@
 <ul>
     {% for application in applications %}
     <li><a href="{% url 'application-detail' application.id %}">{{application.title}}</a> chez <a href="{% url 'company-detail' application.company.id %}">{{application.company}}</a><ul>
-        {% if application.applied %}
-        <li>Envoyée le {{application.date_applied}}</li>
-        {% endif %}
-        {% if application.called_back %}
-        <li>Relancée le {{application.date_callback}}</li>
-        {% endif %}
+        <li>Envoyée : {% if application.applied %} le {{application.date_applied}}
+            {% else %} Non {% endif %}</li>
+            <li>Relancée : {% if application.called_back %} le {{application.date_callback}}
+                {% else %} Non {% endif %}</li>
     </ul></li>
     {% endfor %}
 </ul>
