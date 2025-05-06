@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 
 from findjob.models import Application, Company
-from findjob.forms import ApplicationForm, CompanyForm
+from findjob.forms import AddApplicationForm, CompanyForm, AddCallbackForm
 
 def application_list(request):
     applications = Application.objects.all().order_by('date_applied')
@@ -21,10 +21,10 @@ def application_detail(request, id):
 
 def application_add(request):
     if request.method == 'GET':
-        form = ApplicationForm()
+        form = AddApplicationForm()
     
     elif request.method == 'POST':
-        form = ApplicationForm(request.POST)
+        form = AddApplicationForm(request.POST)
         if form.is_valid():
             application = form.save()
 
@@ -64,5 +64,30 @@ def company_add(request):
 
     return render(request,
                   'findjob/company_add.html',
+                  {'form':form}
+                  )
+
+def callback_add(request, id):
+    application = get_object_or_404(Application, id=id)
+
+    if request.method == 'GET':
+        form = AddCallbackForm()
+    
+    elif request.method == 'POST':
+        form = AddCallbackForm(request.POST)
+        if form.is_valid():
+            callback = form.save()
+            application.called_back = True
+            application.callback = callback
+
+            application.save()
+
+            print(application)
+            print(application.callback)
+
+            return redirect('application-detail', application.id)
+    
+    return render(request,
+                  'findjob/callback_add.html',
                   {'form':form}
                   )

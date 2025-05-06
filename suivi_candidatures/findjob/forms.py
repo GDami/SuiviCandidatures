@@ -1,11 +1,16 @@
 from django import forms
-from findjob.models import Application, Company
+from findjob.models import Application, Company, Callback
 
-class ApplicationForm(forms.ModelForm):
+class AddApplicationForm(forms.ModelForm):
     class Meta:
         model = Application
+        # fields = '__all__'
+        exclude = ("called_back","callback")
+
+class AddCallbackForm(forms.ModelForm):
+    class Meta:
+        model = Callback
         fields = '__all__'
-        #exclude = ('title",)
 
 class CompanyForm(forms.ModelForm):
     class Meta:

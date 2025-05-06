@@ -2,24 +2,24 @@
 
 {% block content %} 
 
-<h1>Candidature<h1>
+<h1>Candidature {{application.id}}</h1>
 
 <ul>
-    <li>{{application.title}}</li>
+    <li></strong>{{application.title}}</strong></li>
     
     {% if application.applied %}
-    <li>Envoyée le {{application.date_applied}}</li>
+    <li><strong>Envoyée le</strong> {{application.date_applied}}</li>
     {% else %}
     <li>Pas encore envoyée</li>
     {% endif %}
-    {% if application.called_back %}
-    <li>Relancée le {{application.date_callback}}</li>
+    <li></strong>Lettre de motivation</strong> : {{application.cover_letter | linebreaks}}</li>
+    {% if not application.callback is null %}
+    <li></strong>Relancée le</strong> {{application.callback.date}}</li>
+    <li></strong>Avec le message</strong> : {{application.callback.message | linebreaks}}</li>
     {% else %}
-    <li>Pas encore relancée</li>
+    <li>Pas encore relancée (<a href="{% url 'callback-add' application.id %}">J'ai relancé</a>)</li>
     {% endif %}
-    <li>Lettre de motivation : {{application.cover_letter | linebreaks}}</li>
     
-    <li><a href="{{application.link}}">Lien</a></li>
-</ul>
+    <li><a target="_blank" href="{{application.link}}">Lien</a></li>
 
 {% endblock %}

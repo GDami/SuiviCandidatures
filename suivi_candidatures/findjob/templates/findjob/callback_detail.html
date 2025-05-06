@@ -1,0 +1,14 @@
+{% extends 'findjob/base.html' %}
+
+{% block content %} 
+
+<h1>{{company.name}}<h1>
+
+<h2>Candidatures liées :</h2>
+<ul>
+    {% for application in company.application_set.all %}
+    <li><a href="{% url 'application-detail' application.id %}">{{application.title}}</a></li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
