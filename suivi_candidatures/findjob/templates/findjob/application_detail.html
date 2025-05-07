@@ -19,6 +19,16 @@
     {% else %}
     <li>Pas encore relancée (<a href="{% url 'callback-add' application.id %}">J'ai relancé</a>)</li>
     {% endif %}
+    <li>Statut : 
+        {% if application.state == 'OP' %}En cours
+        {% elif application.state == 'OK' %}Acceptée
+        {% elif application.state == 'NO' %}Refusée
+        {% endif %}
+        {% if application.state == 'OP' %}
+            (<a href="{% url 'application-accepted' application.id %}">Acceptée</a
+            >/<a href="{% url 'application-declined' application.id %}">Refusée</a
+            >)
+        {% endif %}</li>
     
     <li><a target="_blank" href="{{application.link}}">Lien</a></li>
 

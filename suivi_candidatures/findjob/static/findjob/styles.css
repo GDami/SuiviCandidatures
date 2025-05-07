@@ -60,3 +60,12 @@ ul li ul li {
 .hidden {
     visibility: hidden;
 }
+
+.vertical_divider {
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.declined {
+    color:red;
+}
