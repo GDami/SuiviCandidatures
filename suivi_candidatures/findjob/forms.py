@@ -5,7 +5,7 @@ class AddApplicationForm(forms.ModelForm):
     class Meta:
         model = Application
         # fields = '__all__'
-        exclude = ("called_back","callback")
+        exclude = ("called_back", "callback", "state")
 
 class AddCallbackForm(forms.ModelForm):
     class Meta:
