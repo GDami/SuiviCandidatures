@@ -7,10 +7,7 @@ from findjob.forms import AddApplicationForm, CompanyForm, AddCallbackForm
 
 
 def application_list(request):
-    if not request.GET or request.GET['filter'] == 'all':
-        display = 'Toutes les candidatures'
-        applications = Application.objects.all().order_by('date_applied')
-    else:
+    if request.GET:
         match (request.GET["filter"]):
             case 'open':
                 display = 'Candidatures en cours'
@@ -34,9 +31,9 @@ def application_list(request):
                     should_callback = now - application.date_applied >= timedelta(7)
                     if application.state == Application.ApplicationState.OPEN and not application.called_back and should_callback:
                         applications.append(application)
-            case _:
-                display = 'Toutes les candidatures'
-                applications = Application.objects.all().order_by('date_applied')
+    else:
+        display = 'Toutes les candidatures'
+        applications = Application.objects.all().order_by('date_applied')
     
     return render(request,
                   'findjob/application_list.html',
