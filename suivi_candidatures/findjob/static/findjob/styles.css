@@ -35,14 +35,25 @@ h1 {
     font-size: larger;
 }
 
-.add_button {
+.button {
+    text-align: center;
     display: inline-block;
     text-decoration: none;
+    border-radius: 5px;
+    padding:8px;
+}
+
+.add_button {
     color:white;
     background-color: #689f38;
     border: solid 1px #689f38;
-    border-radius: 5px;
-    padding:8px;
+}
+
+.filter_button {
+    min-width: 90px;
+    color:inherit;
+    background-color: #eaeaea;
+    border: solid 1px black;
 }
 
 form p {
@@ -61,10 +72,10 @@ ul li ul li {
     visibility: hidden;
 }
 
-.vertical_divider {
+/* .vertical_divider {
     display:grid;
     grid-template-columns: repeat(2, 1fr);
-}
+} */
 
 .declined {
     color:red;

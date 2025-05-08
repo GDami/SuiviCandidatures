@@ -1,50 +1,35 @@
 {% extends 'findjob/base.html' %}
 
-{% block content %} 
-<a class="add_button" href="{% url 'application-add' %}">Ajouter une candidature</a>
-<div class="vertical_divider">
-    <div>
-        <h1>Liste des candidatures :</h1>
-        
-        <ul>
-            {% for application in applications %}
-            <li><a href="{% url 'application-detail' application.id %}">{{application.title}}</a> chez <a href="{% url 'company-detail' application.company.id %}">{{application.company}}</a><ul>
-                    <li>Envoyée : {% if application.applied %} le {{application.date_applied}}
+{% block content %}
+
+<a class="filter_button button" href="?filter=all">Toutes</a>
+<a class="filter_button button" href="?filter=open">En cours</a>
+<a class="filter_button button" href="?filter=accepted">Acceptées</a>
+<a class="filter_button button" href="?filter=declined">Refusées</a>
+<a class="filter_button button" href="?filter=called_back">Relancées</a>
+<a class="filter_button button" href="?filter=need_callback">À relancer</a>
+<br><br><a class="add_button button" href="{% url 'application-add' %}">Ajouter une candidature</a>
+<br>
+<div>
+    <h1>{{display}} :</h1>
+    
+    <ul>
+        {% for application in applications %}
+        <li><a href="{% url 'application-detail' application.id %}">{{application.title}}</a> chez <a href="{% url 'company-detail' application.company.id %}">{{application.company}}</a><ul>
+                <li>Envoyée : {% if application.applied %} le {{application.date_applied}}
+                {% else %} Non {% endif %}</li>
+                <li>Relancée : {% if application.called_back %} le {{application.callback.date}}
                     {% else %} Non {% endif %}</li>
-                    <li>Relancée : {% if application.called_back %} le {{application.date_callback}}
-                        {% else %} Non {% endif %}</li>
-                    {% if application.state == 'OP' %}
-                    <li class="app_state_open">En cours</li>
-                    {% elif application.state == 'NO' %}
-                    <li class="app_state_declined">Refusée</li>
-                    {% else %}
-                    <li class="app_state_accepted">Acceptée</li>
-                    {% endif %}
-            </ul></li>
-            {% endfor %}
-        </ul>
-    </div>
-    <div>
-        <h1>Candidatures à relancer :</h1>
-        
-        <ul>
-            {% for application in need_callback %}
-            <li><a href="{% url 'application-detail' application.id %}">{{application.title}}</a> chez <a href="{% url 'company-detail' application.company.id %}">{{application.company}}</a><ul>
-                    <li>Envoyée : {% if application.applied %} le {{application.date_applied}}
-                    {% else %} Non {% endif %}</li>
-                    <li>Relancée : {% if application.called_back %} le {{application.date_callback}}
-                        {% else %} Non {% endif %}</li>
-                    {% if application.state == 'OP' %}
-                    <li class="app_state_open">En cours</li>
-                    {% elif application.state == 'NO' %}
-                    <li class="app_state_declined">Refusée</li>
-                    {% else %}
-                    <li class="app_state_accepted">Acceptée</li>
-                    {% endif %}
-            </ul></li>
-            {% endfor %}
-        </ul>
-    </div>
+                {% if application.state == 'OP' %}
+                <li class="app_state_open">En cours</li>
+                {% elif application.state == 'NO' %}
+                <li class="app_state_declined">Refusée</li>
+                {% else %}
+                <li class="app_state_accepted">Acceptée</li>
+                {% endif %}
+        </ul></li>
+        {% endfor %}
+    </ul>
 </div>
 
 {% endblock %}

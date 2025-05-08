@@ -4,19 +4,43 @@ from datetime import datetime, timedelta
 from findjob.models import Application, Company
 from findjob.forms import AddApplicationForm, CompanyForm, AddCallbackForm
 
+
+
 def application_list(request):
-    applications = Application.objects.all().order_by('date_applied')
-    need_callback = []
-    now = datetime.now().date()
+    if not request.GET or request.GET['filter'] == 'all':
+        display = 'Toutes les candidatures'
+        applications = Application.objects.all().order_by('date_applied')
+    else:
+        match (request.GET["filter"]):
+            case 'open':
+                display = 'Candidatures en cours'
+                applications = Application.objects.all().filter(state__exact='OP').order_by('date_applied')
+            case 'accepted':
+                display = 'Candidatures acceptées'
+                applications = Application.objects.all().filter(state__exact='OK').order_by('date_applied')
+            case 'declined':
+                display = 'Candidatures refusées'
+                applications = Application.objects.all().filter(state__exact='NO').order_by('date_applied')
+            case 'called_back':
+                display = 'Candidatures relancées'
+                applications = Application.objects.all().filter(called_back__exact=True).order_by('date_applied')
+            case 'need_callback':
+                display = 'Candidatures à rappeler'
+                all_applications = Application.objects.all().exclude(state__exact='NO').order_by('date_applied')
+                applications = []
+                now = datetime.now().date()
 
-    for application in applications:
-        should_callback = now - application.date_applied >= timedelta(7)
-        if application.state == Application.ApplicationState.OPEN and not application.called_back and should_callback:
-            need_callback.append(application)
-
+                for application in all_applications:
+                    should_callback = now - application.date_applied >= timedelta(7)
+                    if application.state == Application.ApplicationState.OPEN and not application.called_back and should_callback:
+                        applications.append(application)
+            case _:
+                display = 'Toutes les candidatures'
+                applications = Application.objects.all().order_by('date_applied')
+    
     return render(request,
                   'findjob/application_list.html',
-                  {'applications':applications, 'need_callback':need_callback}
+                  {'applications':applications, 'display':display}
                   )
 
 def application_detail(request, id):
