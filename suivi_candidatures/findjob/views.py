@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponse
 from datetime import datetime, timedelta
+import csv
 
 from findjob.models import Application, Company
 from findjob.forms import AddApplicationForm, CompanyForm, AddCallbackForm
@@ -85,6 +87,35 @@ def application_declined(request, id):
     application.save()
 
     return redirect('application-detail', application.id)
+
+def application_export_csv(request):
+    applications = Application.objects.all()
+
+    response = HttpResponse(
+        content_type='text/csv',
+        headers={'Content-Disposition': 'attachment; filename=candidatures.csv'}
+    )
+    writer = csv.writer(response)
+    fieldnames = ['Titre', 'Statut', 'Lien', 'Entreprise', 'Envoyée', 'Lettre de motivation', 'Relancée', 'Message de relance']
+    writer.writerow(fieldnames)
+
+    for application in applications:
+        state = 'En cours'
+        if application.state == 'NO': state = 'Refusée'
+        elif application.state == 'OK': state = 'Acceptée'
+        new_row = [
+            application.title,
+            state,
+            application.link,
+            application.company.name,
+            application.date_applied if application.applied else 'Non',
+            application.cover_letter,
+            application.callback.date if application.called_back else 'Non',
+            application.callback.message if application.called_back else '',
+        ]
+        writer.writerow(new_row)
+
+    return response
 
 def company_list(request):
     companies = Company.objects.all().order_by('name')

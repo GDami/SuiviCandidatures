@@ -2,13 +2,16 @@
 
 {% block content %}
 
+<a class="add_button button" href="{% url 'application-add' %}"> + Ajouter une candidature</a>
+<a class="export_button button" href="{% url 'application-export-csv' %}">Exporter en CSV</a>
+<br>
+<br>
 <a class="filter_button button" href="?">Toutes</a>
 <a class="filter_button button" href="?filter=open">En cours</a>
 <a class="filter_button button" href="?filter=accepted">Acceptées</a>
 <a class="filter_button button" href="?filter=declined">Refusées</a>
 <a class="filter_button button" href="?filter=called_back">Relancées</a>
 <a class="filter_button button" href="?filter=need_callback">À relancer</a>
-<br><br><a class="add_button button" href="{% url 'application-add' %}">Ajouter une candidature</a>
 <br>
 <div>
     <h1>{{display}} :</h1>

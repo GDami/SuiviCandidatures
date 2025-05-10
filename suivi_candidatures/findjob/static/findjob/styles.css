@@ -43,6 +43,12 @@ h1 {
     padding:8px;
 }
 
+.export_button {
+    color:white;
+    background-color: #1E90FF;
+    border: solid 1px ##1E90FF;
+}
+
 .add_button {
     color:white;
     background-color: #689f38;

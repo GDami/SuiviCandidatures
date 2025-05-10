@@ -27,6 +27,7 @@ urlpatterns = [
     path('applications/<int:id>/accepted', views.application_accepted, name='application-accepted'),
     path('applications/<int:id>/declined', views.application_declined, name='application-declined'),
     path('applications/add/', views.application_add, name='application-add'),
+    path('applications/export-csv/', views.application_export_csv, name='application-export-csv'),
     path('companies/', views.company_list, name='company-list'),
     path('companies/<int:id>/', views.company_detail, name='company-detail'),
     path('companies/add/', views.company_add, name='company-add'),
