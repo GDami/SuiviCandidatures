@@ -30,6 +30,7 @@ urlpatterns = [
     path('applications/export-csv/', views.application_export_csv, name='application-export-csv'),
     path('companies/', views.company_list, name='company-list'),
     path('companies/<int:id>/', views.company_detail, name='company-detail'),
+    path('companies/<int:id>/delete', views.company_delete, name='company-delete'),
     path('companies/add/', views.company_add, name='company-add'),
     path('applications/<int:id>/callback/add', views.callback_add, name='callback-add'),
 ]

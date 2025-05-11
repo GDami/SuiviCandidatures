@@ -2,7 +2,9 @@
 
 {% block content %} 
 
-<h1>{{company.name}}<h1>
+<h1>{{company.name}}</h1>
+
+<a class="delete_button button" href="{% url 'company-delete' company.id %}">Supprimer</a>
 
 <h2>Candidatures liées :</h2>
 <ul>

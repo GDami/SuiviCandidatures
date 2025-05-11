@@ -31,5 +31,8 @@
         {% endif %}</li>
     
     <li><a target="_blank" href="{{application.link}}">Lien</a></li>
+</ul>
+
+<a class="delete_button button" href="{% url 'application-delete' application.id %}">Supprimer</a>
 
 {% endblock %}

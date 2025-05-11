@@ -68,11 +68,14 @@ def application_add(request):
 
 def application_delete(request, id):
     application = get_object_or_404(Application, id=id)
-
-    return render(request,
-                  'findjob/application_delete',
-                  {'application':application}
-                  )
+    if request.method == 'GET':
+        return render(request,
+                    'findjob/application_delete.html',
+                    {'application':application}
+                    )
+    elif request.method == 'POST':
+        application.delete()
+        return redirect('application-list')
 
 def application_accepted(request, id):
     application = get_object_or_404(Application, id=id)
@@ -148,6 +151,17 @@ def company_add(request):
                   'findjob/company_add.html',
                   {'form':form}
                   )
+
+def company_delete(request, id):
+    company = get_object_or_404(Company, id=id)
+    if request.method == 'GET':
+        return render(request,
+                    'findjob/company_delete.html',
+                    {'company':company}
+                    )
+    elif request.method == 'POST':
+        company.delete()
+        return redirect('company-list')
 
 def callback_add(request, id):
     application = get_object_or_404(Application, id=id)

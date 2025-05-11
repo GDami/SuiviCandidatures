@@ -1,0 +1,14 @@
+{% extends 'findjob/base.html' %}
+
+{% block content %} 
+
+<h1>Suppression de candidature</h1>
+
+
+<form action="" method="post" novalidate>
+    {%csrf_token%}
+    <p>Confirmer la suppression de {{application.title}} chez {{application.company.name}} ?</p>
+    <input class="delete_button button" type="submit" value="Supprimer">
+</form>
+
+{% endblock %}

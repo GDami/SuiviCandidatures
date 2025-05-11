@@ -41,18 +41,25 @@ h1 {
     text-decoration: none;
     border-radius: 5px;
     padding:8px;
+    cursor: pointer;
 }
 
 .export_button {
     color:white;
     background-color: #1E90FF;
-    border: solid 1px ##1E90FF;
+    border: solid 1px #1E90FF;
 }
 
 .add_button {
     color:white;
     background-color: #689f38;
     border: solid 1px #689f38;
+}
+
+.delete_button {
+    color:white;
+    background-color: red;
+    border: solid 1px red;
 }
 
 .filter_button {
