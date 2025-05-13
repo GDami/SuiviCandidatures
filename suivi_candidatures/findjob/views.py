@@ -185,5 +185,5 @@ def callback_add(request, id):
     
     return render(request,
                   'findjob/callback_add.html',
-                  {'form':form}
+                  {'form':form, 'application':application}
                   )
