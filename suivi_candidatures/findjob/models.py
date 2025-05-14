@@ -4,7 +4,7 @@ class Company(models.Model):
     def __str__(self):
         return f'{self.name}'
     
-    name = models.fields.CharField(max_length=30, unique=True)
+    name = models.fields.CharField(max_length=50, unique=True)
 
 class Callback(models.Model):
     date = models.fields.DateField()

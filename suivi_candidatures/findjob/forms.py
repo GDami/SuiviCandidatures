@@ -2,6 +2,8 @@ from django import forms
 from findjob.models import Application, Company, Callback
 
 class AddApplicationForm(forms.ModelForm):
+    company = forms.ModelChoiceField(queryset=Company.objects.order_by('name'))
+
     class Meta:
         model = Application
         # fields = '__all__'
