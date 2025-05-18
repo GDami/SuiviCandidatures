@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
+from django.core.exceptions import ObjectDoesNotExist
 from datetime import datetime, timedelta
 import csv
 
@@ -43,11 +44,15 @@ def application_list(request):
                   )
 
 def application_detail(request, id):
-    application = get_object_or_404(Application, id=id)
+    try:
+        application = Application.objects.get(id=id)
+    except ObjectDoesNotExist:
+        print('zizi')
+        application = Application()
 
     return render(request,
                   'findjob/application_detail.html',
-                  {'application':application}
+                  {'application':application, 'prev_id':id - 1, 'next_id':id + 1}
                   )
 
 def application_add(request):

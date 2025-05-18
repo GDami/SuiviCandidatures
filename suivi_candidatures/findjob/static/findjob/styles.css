@@ -69,6 +69,16 @@ h1 {
     border: solid 1px black;
 }
 
+.previous_button {
+    min-width: 20px;
+}
+
+#application_title {
+    margin:10px;
+    text-align: center;
+    display: inline;
+}
+
 form p {
     display: flex;
 }

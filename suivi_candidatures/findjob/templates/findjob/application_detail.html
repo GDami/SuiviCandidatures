@@ -2,8 +2,11 @@
 
 {% block content %} 
 
-<h1>Candidature {{application.id}}</h1>
+<a class="button filter_button previous_button" href="{% url 'application-detail' prev_id %}">&lt</a>
+<h1 id="application_title">Candidature {{application.id}}</h1>
+<a class="button filter_button previous_button" href="{% url 'application-detail' next_id %}">&gt</a>
 
+{% if application.id %}
 <ul>
     <li></strong>{{application.title}}</strong></li>
     
@@ -32,7 +35,7 @@
     
     <li><a target="_blank" href="{{application.link}}">Lien</a></li>
 </ul>
-
 <a class="delete_button button" href="{% url 'application-delete' application.id %}">Supprimer</a>
+{% endif %}
 
 {% endblock %}
