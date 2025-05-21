@@ -57,7 +57,10 @@ def application_detail(request, id):
 
 def application_add(request):
     if request.method == 'GET':
-        form = AddApplicationForm()
+        if request.GET.__contains__("company"):
+            form = AddApplicationForm({"company":request.GET.get("company")})
+        else:
+            form = AddApplicationForm()
     
     elif request.method == 'POST':
         form = AddApplicationForm(request.POST)
