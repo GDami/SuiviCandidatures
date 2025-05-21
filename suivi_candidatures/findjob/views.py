@@ -58,7 +58,7 @@ def application_detail(request, id):
 def application_add(request):
     if request.method == 'GET':
         if request.GET.__contains__("company"):
-            form = AddApplicationForm({"company":request.GET.get("company")})
+            form = AddApplicationForm({"company":request.GET.get("company"), "applied":True})
         else:
             form = AddApplicationForm()
     
