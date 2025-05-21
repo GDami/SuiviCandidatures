@@ -8,8 +8,8 @@
 
 {% if application.id %}
 <ul>
-    <li></strong>{{application.title}}</strong></li>
-    
+    <li><strong>{{application.title}}</strong></li>
+    <li>chez <a href="{% url 'company-detail' application.company.id %}">{{application.company.name}}</a></li>
     {% if application.applied %}
     <li><strong>Envoyée le</strong> {{application.date_applied}}</li>
     {% else %}
