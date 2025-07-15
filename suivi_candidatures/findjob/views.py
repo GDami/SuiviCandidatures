@@ -9,6 +9,9 @@ from findjob.forms import AddApplicationForm, CompanyForm, AddCallbackForm
 
 
 
+def landing(request):
+    return redirect('application-list')
+
 def application_list(request):
     if request.GET:
         match (request.GET["filter"]):

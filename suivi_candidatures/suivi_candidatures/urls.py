@@ -20,6 +20,7 @@ from django.urls import path
 from findjob import views
 
 urlpatterns = [
+    path('', views.landing, name='landing'),
     path('admin/', admin.site.urls),
     path('applications/', views.application_list, name='application-list'),
     path('applications/<int:id>/', views.application_detail, name='application-detail'),
