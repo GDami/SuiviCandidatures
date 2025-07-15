@@ -7,15 +7,14 @@
 <a class="button filter_button previous_button" href="{% url 'application-detail' next_id %}">&gt</a>
 
 {% if application.id %}
-<ul>
-    <li><strong>{{application.title}}</strong></li>
-    <li>chez <a href="{% url 'company-detail' application.company.id %}">{{application.company.name}}</a></li>
+<ul class="application-details-list">
+    <li><strong>{{application.title}}</strong> chez <a href="{% url 'company-detail' application.company.id %}">{{application.company.name}}</a></li>
     {% if application.applied %}
     <li><strong>Envoyée le</strong> {{application.date_applied}}</li>
     {% else %}
     <li>Pas encore envoyée</li>
     {% endif %}
-    <li></strong>Lettre de motivation</strong> : {{application.cover_letter | linebreaks}}</li>
+    <li class="cover-letter"></strong>Lettre de motivation</strong> : {{application.cover_letter | linebreaks}}</li>
     {% if not application.callback is null %}
     <li></strong>Relancée le</strong> {{application.callback.date}}</li>
     <li></strong>Avec le message</strong> : {{application.callback.message | linebreaks}}</li>
